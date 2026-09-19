@@ -2,9 +2,52 @@
 <html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Turismo y clima</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#eef3f3;color:#152c34;font:17px system-ui,sans-serif}main{max-width:1000px;margin:auto;padding:45px 24px}header{margin-bottom:36px}small{color:#476770}h1{font-size:clamp(36px,6vw,58px);letter-spacing:-2px;margin:10px 0}h2{font-size:23px}p{line-height:1.6}.controls{display:grid;grid-template-columns:1fr 1fr;gap:24px}section{background:white;border-radius:18px;padding:26px;margin:18px 0}label{display:block;margin:12px 0 5px}input,select,button{font:inherit;border-radius:8px;padding:11px;border:1px solid #9aafb5;max-width:100%;width:100%}button{background:#125d60;color:white;border:0;cursor:pointer;margin-top:18px;font-weight:650}button:disabled{opacity:.5}#notice{padding:18px;border-radius:10px;background:#e2f0ea}.alert{background:#ffe5de!important;color:#8b291c}ul{padding-left:24px;line-height:2}a{color:#125d60}.meta{font-size:14px} @media(max-width:650px){.controls{grid-template-columns:1fr}}
+:root{color-scheme:dark;--bg:#08090e;--surface:#101119;--line:#262837;--text:#f3f3fa;--muted:#a3a6bd;--purple:#b28aff;--blue:#3673ff}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 85% 0%,#20133480,transparent 42%),var(--bg);color:var(--text);font:16px system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+main{max-width:1080px;margin:auto;padding:48px 28px 32px}
+header{margin-bottom:38px;padding-bottom:30px;border-bottom:1px solid var(--line)}
+small{display:flex;align-items:center;gap:10px;color:var(--purple);font-size:11px;font-weight:700;letter-spacing:2.5px}
+small::before{content:"";width:7px;height:7px;background:var(--blue);border-radius:50%;box-shadow:0 0 16px #3673ff80}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.1;letter-spacing:-2.5px;font-weight:650;margin:20px 0 14px}
+h1 span{color:var(--purple)}
+h2{font-size:20px;letter-spacing:-.4px;font-weight:600;margin:0 0 12px}
+p{line-height:1.65;color:var(--muted);margin:0 0 20px}
+header p{font-size:17px;margin:0}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+section{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;margin:0 0 22px}
+.controls section{display:flex;flex-direction:column}
+.controls section:first-child{border-top-color:#3673ff80}
+.controls section:nth-child(2){border-top-color:#a56cff80}
+.controls section>p{font-size:14px;max-width:380px}
+form{margin-top:auto}
+label{display:block;color:#c1c3d5;font-size:12px;font-weight:550;margin:18px 0 8px}
+input,select,button{font:inherit;border-radius:8px;padding:13px 14px;max-width:100%;width:100%;min-height:48px}
+input,select{background:#090b12;border:1px solid #303346;color:var(--text);transition:border-color .15s}
+input:hover,select:hover{border-color:#666184}
+input:focus-visible,select:focus-visible{outline:2px solid var(--purple);outline-offset:3px}
+button{background:#285ee8;color:white;border:1px solid #477dff;cursor:pointer;margin-top:25px;font-weight:600;font-size:14px;transition:background .15s,box-shadow .15s}
+button:hover{background:#356cf7;box-shadow:0 4px 22px #285ee824}
+#demo button{background:#211832;border-color:#674590;color:#dbc4ff}
+#demo button:hover{background:#312044;border-color:#b28aff}
+button:focus-visible,a:focus-visible{outline:2px solid #c4a5ff;outline-offset:4px}
+button:disabled{opacity:.55;cursor:wait}
+#results{background:#0d0f17}
+#notice{padding:16px 18px;border-left:2px solid var(--blue);border-radius:0 6px 6px 0;background:#3673ff0b;color:#c4cce7;margin:18px 0 0;font-size:14px}
+#notice.alert{background:#fa92730c;border-color:#f5a07e;color:#ffc6ad}
+#meta{margin:16px 0 0;color:#a8a4c6}
+ul{padding:0;margin:16px 0 0;list-style:none}
+li{padding:13px 0;border-top:1px solid var(--line);font-size:14px;line-height:1.6}
+li::before{content:"↗";color:var(--purple);margin-right:12px}
+ul:empty,#meta:empty{display:none}
+a{color:#91afff;text-underline-offset:3px}
+.meta{font-size:12px;line-height:1.8}
+main>p.meta{max-width:860px;color:#8d91aa;margin:4px 0 0}
+::selection{background:#6541a5;color:white}
+@media(max-width:650px){main{padding:30px 18px}header{margin-bottom:26px;padding-bottom:24px}.controls{grid-template-columns:1fr;gap:0}section{padding:23px}h1{letter-spacing:-1.5px}header p{font-size:15px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<main><header><small>PROTOTIPO ACADÉMICO</small><h1>Turismo y clima</h1><p>Consulta el pronóstico y encuentra actividades para tu próximo recorrido.</p></header>
+<main><header><small>PROTOTIPO DE TURISMO</small><h1>Turismo <span>y clima</span></h1><p>Consulta el pronóstico y encuentra actividades para tu próximo recorrido.</p></header>
 <div class="controls"><section><h2>Consultar pronóstico</h2><p>Coordenadas iniciales: Bogotá. Se consulta la próxima hora del pronóstico.</p><form id="live"><label for="lat">Latitud</label><input id="lat" type="number" step="any" min="-90" max="90" value="4.7110" required><label for="lon">Longitud</label><input id="lon" type="number" step="any" min="-180" max="180" value="-74.0721" required><button>Consultar clima</button></form></section>
 <section><h2>Demostración del cambio</h2><p>Datos simulados para comprobar la regla de seguridad sin internet.</p><form id="demo"><label for="wind">Velocidad del viento (km/h)</label><input id="wind" type="number" min="0" max="500" step="any" value="60" required><label for="code">Estado del cielo</label><select id="code"><option value="0">Soleado</option><option value="3">Nublado</option><option value="61">Lluvia</option><option value="95">Tormenta</option></select><button>Probar escenario</button></form></section></div>
 <section aria-live="polite" id="results"><h2>Recomendaciones</h2><p id="notice">Consulta el pronóstico o prueba un escenario.</p><p id="meta" class="meta"></p><ul id="activities"></ul></section>
