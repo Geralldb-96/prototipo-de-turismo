@@ -40,7 +40,7 @@ def recommend(wind, code):
         "wind_kmh": wind, "weather_code": int(code),
         "outdoor_blocked": blocked or not outdoor_weather,
         "safety_alert": {"code": "HIGH_WIND", "message": "Alerta de seguridad: viento superior a 50 km/h. Todas las actividades al aire libre están bloqueadas."} if blocked else None,
-        "reason": "Viento superior a 50 km/h" if blocked else ("Clima no favorable para actividades al aire libre" if not outdoor_weather else "Sin bloqueo por las reglas del prototipo"),
+        "reason": "Viento superior a 50 km/h" if blocked else ("Clima no favorable para actividades al aire libre" if not outdoor_weather else "Puedes explorar planes al aire libre: no hay alerta por viento fuerte."),
         "activities": activities,
     }
 
